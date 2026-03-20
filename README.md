@@ -4,32 +4,31 @@ A [pi](https://github.com/badlogic/pi-mono) extension that gives you a to-do lis
 
 ## Installation
 
-### Option 1: Symlink (recommended for development)
+```bash
+pi install npm:@patriceckhart/pi-todo
+```
+
+That's it. The extension is auto-discovered on next start or `/reload`.
+
+### Other options
 
 ```bash
+# Try it without installing
+pi -e npm:@patriceckhart/pi-todo
+
+# Install from git
+pi install https://github.com/patriceckhart/pi-todo
+
+# Local development
 ln -s /path/to/pi-todo ~/.pi/agent/extensions/pi-todo
 ```
-
-Then start pi normally. The extension is auto-discovered.
-
-### Option 2: Quick test
-
-```bash
-pi -e /path/to/pi-todo/index.ts
-```
-
-### Option 3: Copy
-
-Copy the `pi-todo` folder into `~/.pi/agent/extensions/` (global) or `.pi/extensions/` (project-local).
-
-> After installing via symlink or copy, you can hot-reload with `/reload` — no restart needed.
 
 ## Requirements
 
 - **macOS** — uses Apple's Reminders app via a compiled Swift helper (EventKit)
 - **Swift** — `swiftc` must be available (ships with Xcode or Xcode Command Line Tools)
-- The Swift helper binary (`reminders-helper`) is auto-compiled on first run
-- The first time the extension runs it will create a **"pi"** list in Apple Reminders if it doesn't already exist
+- The Swift helper binary is auto-compiled on first run
+- A **"pi"** list is auto-created in Apple Reminders if it doesn't exist
 
 ## Usage
 
@@ -50,13 +49,15 @@ Type `/todo` to open the interactive TUI:
 
 ```
 ──────────────────────────────────────────
+
   📋 Todos (1/3 done)
 
  ▸ ○ Fix login bug !!!
    ○ Refactor auth module …
    ✓ Set up CI pipeline
 
-  ↑↓ navigate • Space toggle • Enter details • a add • d delete • r refresh • Esc close
+  ↑↓ navigate • x complete • Enter details • a add • d delete • r refresh • Esc close
+
 ──────────────────────────────────────────
 ```
 
@@ -66,7 +67,7 @@ Type `/todo` to open the interactive TUI:
 |-----|--------|
 | `↑` / `k` | Move up |
 | `↓` / `j` | Move down |
-| `Space` | Toggle done/undone |
+| `x` / `Space` | Toggle done/undone |
 | `Enter` | Open detail view |
 | `a` | Add a new todo |
 | `d` / `Delete` | Delete todo |
@@ -77,7 +78,7 @@ Type `/todo` to open the interactive TUI:
 
 | Key | Action |
 |-----|--------|
-| `Space` / `Enter` | Toggle done/undone |
+| `x` / `Space` / `Enter` | Toggle done/undone |
 | `e` | Edit the description (opens multi-line editor) |
 | `d` / `Delete` | Delete todo |
 | `Esc` / `q` | Back to list |
@@ -89,8 +90,6 @@ Type `/todo` to open the interactive TUI:
 3. Press `Ctrl+S` to save, or `Esc` to save without a description
 
 **Edit mode** (press `e` in detail view)
-
-A full multi-line text editor for longer descriptions.
 
 | Key | Action |
 |-----|--------|
