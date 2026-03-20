@@ -1,6 +1,6 @@
 {
   "name": "pi-todo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A pi extension for managing todos synced with Apple Reminders",
   "main": "index.ts",
   "license": "MIT"
